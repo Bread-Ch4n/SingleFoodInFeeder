@@ -6,7 +6,7 @@ using SingleFoodInFeeder;
 [assembly: MelonInfo(
     typeof(Mod),
     "SingleFoodInFeeder",
-    "1.0.0",
+    "1.0.1",
     "Bread-Chan",
     "https://www.nexusmods.com/slimerancher2/mods/109"
 )]
@@ -22,7 +22,7 @@ public class Mod : MelonMod
     [HarmonyPrefix]
     private static bool SlimeFeeder_ProcessFeedOperation(SlimeFeeder __instance)
     {
-        if (__instance._storage.Ammo.Slots[0].Count > 1)
+        if (__instance._storage.Ammo.Slots[0] is { Count: > 1 })
             return true;
         var model = __instance._model;
         model.remainingFeedOperations = Math.Max(0, model.remainingFeedOperations - 1);
